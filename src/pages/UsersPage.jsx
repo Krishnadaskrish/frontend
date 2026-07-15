@@ -71,7 +71,6 @@ export const UsersPage = () => {
         setTotalRecords(res.pagination.recordsTotal || 0);
       }
 
-      // 2. Only fetch roles definitions if user has permissions to create users (Requires roles:read)
       if (user.permissions.includes("users:create")) {
         try {
           const rolesRes = await axios.get("/api/roles");
