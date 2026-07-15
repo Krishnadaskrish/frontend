@@ -1,6 +1,32 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem("token");
+      if (window.location.pathname !== "/login") {
+        window.location.href = "/login";
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
@@ -9,14 +35,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Set default authorization header
-  if (token) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  } else {
-    delete axios.defaults.headers.common["Authorization"];
-  }
-
-  // Load user session on mount
   useEffect(() => {
     const loadSession = async () => {
       if (!token) {
@@ -43,8 +61,6 @@ export const AuthProvider = ({ children }) => {
       const newToken = res.data.token;
       localStorage.setItem("token", newToken);
       setToken(newToken);
-      // Fetch full profile info with resolved permissions from user-service
-      axios.defaults.headers.common["Authorization"] = `Bearer ${newToken}`;
       const profileRes = await axios.get("/api/users/me/permissions");
       setUser(profileRes.data.user);
       return profileRes.data.user;
@@ -59,7 +75,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("token");
     setToken(null);
     setUser(null);
-    delete axios.defaults.headers.common["Authorization"];
   };
 
   const hasPermission = (permissionCode) => {

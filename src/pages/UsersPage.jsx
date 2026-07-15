@@ -64,7 +64,6 @@ export const UsersPage = () => {
   const loadAllData = async () => {
     setLoading(true);
     try {
-      // 1. Fetch user directory profiles list (Requires users:read)
       const usersRes = await axios.get("/api/users", { params: { page, limit } });
       const res = usersRes.data;
       setUsersList(res.response || []);
@@ -126,8 +125,7 @@ export const UsersPage = () => {
         password: "",
         role: "User",
       });
-      setShowCreateModal(false); // Close modal on success
-      // Reset to page 1 and reload
+      setShowCreateModal(false);
       setPage(1);
       await fetchUsersList(1, limit);
     } catch (err) {

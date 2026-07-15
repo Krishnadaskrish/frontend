@@ -28,9 +28,8 @@ export const AdminDashboard = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
 
-  // Role permissions mappings edits
-  const [editingMappings, setEditingMappings] = useState({}); // roleId -> array of permissionIds
-  const [updatingPermissions, setUpdatingPermissions] = useState({}); // roleId -> boolean
+  const [editingMappings, setEditingMappings] = useState({}); 
+  const [updatingPermissions, setUpdatingPermissions] = useState({});
 
   useEffect(() => {
     loadAllData();
@@ -45,7 +44,6 @@ export const AdminDashboard = () => {
         axios.get("/api/permissions"),
       ]);
 
-      // Calculate total users count
       const uRes = usersRes.data;
       if (Array.isArray(uRes)) {
         setUsersCount(uRes.length);
@@ -58,7 +56,6 @@ export const AdminDashboard = () => {
       setRolesList(rolesRes.data);
       setPermissionsList(permsRes.data);
 
-      // Prepopulate current permission mappings
       const mappingsObj = {};
       rolesRes.data.forEach((role) => {
         mappingsObj[role.id] = role.permissions.map((p) => p.id);
@@ -73,7 +70,6 @@ export const AdminDashboard = () => {
     }
   };
 
-  // Toggle permission mapping check
   const handleTogglePermission = (roleId, permId) => {
     setEditingMappings((prev) => {
       const currentList = prev[roleId] || [];
@@ -103,7 +99,6 @@ export const AdminDashboard = () => {
       const errMsg = err.response?.data?.error || "Failed to save permission mappings.";
       setErrorMsg(errMsg);
       enqueueSnackbar(errMsg, { variant: "error" });
-      // Rollback UI check state to what is active on the server
       const rolesRes = await axios.get("/api/roles");
       setRolesList(rolesRes.data);
       const mappingsObj = {};
