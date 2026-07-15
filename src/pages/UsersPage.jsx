@@ -14,6 +14,8 @@ import {
   Loader2,
   AlertCircle,
   ShieldCheck,
+  Eye, 
+  EyeOff,
   X,
   Lock,
 } from "lucide-react";
@@ -26,6 +28,8 @@ export const UsersPage = () => {
   const [rolesList, setRolesList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadingUsers, setLoadingUsers] = useState(false);
+  const [showNewUserPassword, setShowNewUserPassword] = useState(false);
+
 
   // Pagination state
   const [page, setPage] = useState(1);
@@ -339,16 +343,31 @@ export const UsersPage = () => {
                 />
               </div>
 
-              <div className="space-y-1">
+    <div className="space-y-1">
                 <label className="text-[10px] font-bold uppercase text-forest-500">Password</label>
-                <input
-                  type="password"
-                  required
-                  value={newUser.password}
-                  onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-                  placeholder="Enter user password "
-                  className="h-10 w-full rounded-lg border border-sand-200 bg-sand-50 px-3 text-xs text-forest-900 outline-none transition-colors focus:border-moss-400"
-                />
+                <div className="relative">
+                  <input
+                    type={showNewUserPassword ? "text" : "password"}
+                    required
+                    value={newUser.password}
+                    onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+                    placeholder="Enter user password "
+                    className="h-10 w-full rounded-lg border border-sand-200 bg-sand-50 px-3 pr-9 text-xs text-forest-900 outline-none transition-colors focus:border-moss-400"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowNewUserPassword((prev) => !prev)}
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-forest-400 transition-colors hover:text-forest-600"
+                    tabIndex={-1}
+                    aria-label={showNewUserPassword ? "Hide password" : "Show password"}
+                  >
+                    {showNewUserPassword ? (
+                      <EyeOff className="h-3.5 w-3.5" />
+                    ) : (
+                      <Eye className="h-3.5 w-3.5" />
+                    )}
+                  </button>
+                </div>
               </div>
 
               <div className="space-y-1 text-left">

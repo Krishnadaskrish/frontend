@@ -2,13 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useSnackbar } from "notistack";
-import { ShieldCheck, Mail, Lock, Loader2, ArrowRight, KeyRound, Users2, Lock as LockIcon } from "lucide-react";
+import { ShieldCheck, Mail, Lock, Loader2, ArrowRight, KeyRound, Users2, Lock as LockIcon, Eye, EyeOff  } from "lucide-react";
 
 export const Login = () => {
   const { login, error: authError } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -141,19 +142,32 @@ export const Login = () => {
             </div>
 
             {/* Password input */}
-            <div className="space-y-1.5">
+  <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase tracking-wider text-forest-600">
                 Password
               </label>
               <div className="relative">
                 <Lock className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-forest-400" />
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="h-11 w-full rounded-xl border border-sand-200 bg-white pl-10 pr-4 text-sm text-forest-900 placeholder-forest-400 outline-none transition-colors focus:border-moss-400"
+                  className="h-11 w-full rounded-xl border border-sand-200 bg-white pl-10 pr-11 text-sm text-forest-900 placeholder-forest-400 outline-none transition-colors focus:border-moss-400"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-forest-400 transition-colors hover:text-forest-600"
+                  tabIndex={-1}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </button>
               </div>
             </div>
 
