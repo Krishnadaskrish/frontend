@@ -1,15 +1,12 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import Loader from "./Loader";
 
 export const ProtectedRoute = ({ children, requiredPermission }) => {
   const { user, loading, hasPermission } = useAuth();
 
   if (loading) {
-    return (
-      <div className="flex h-screen w-screen items-center justify-center bg-sand-50">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-moss-500 border-t-transparent" />
-      </div>
-    );
+    return <Loader message="Securing connection..." />;
   }
 
   if (!user) {

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import Layout from "../components/Layout";
+import Loader from "../components/Loader";
 import { useSnackbar } from "notistack";
 import axios from "axios";
 import {
@@ -116,11 +117,7 @@ export const AdminDashboard = () => {
   };
 
   if (loading) {
-    return (
-      <div className="flex h-screen w-screen items-center justify-center bg-sand-50">
-        <Loader2 className="h-8 w-8 animate-spin text-moss-500" />
-      </div>
-    );
+    return <Loader message="Loading system configuration..." />;
   }
 
   return (

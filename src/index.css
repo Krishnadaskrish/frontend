@@ -21,3 +21,20 @@
 ::-webkit-scrollbar-thumb {
   @apply bg-sand-200 rounded-full hover:bg-moss-400 transition-colors;
 }
+
+@keyframes progress-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-progress {
+  animation: progress-slide 1.6s infinite ease-in-out;
+}
+
