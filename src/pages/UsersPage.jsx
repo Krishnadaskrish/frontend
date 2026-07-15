@@ -258,7 +258,7 @@ export const UsersPage = () => {
                         <Can perform="users:delete">
                           <button
                             title="Delete User"
-                            disabled={usr.email === "admin@gamil.com" || usr.email === user.email}
+                            disabled={usr.email === "admin@gmail.com" || usr.email === user.email}
                             onClick={() => handleDeleteTrigger(usr)}
                             className="cursor-pointer rounded-lg border border-transparent p-1.5 text-forest-400 transition-all hover:border-ember-500/20 hover:bg-ember-100 hover:text-ember-500 disabled:opacity-30 disabled:hover:border-transparent disabled:hover:bg-transparent disabled:hover:text-forest-400"
                           >
