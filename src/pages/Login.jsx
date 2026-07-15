@@ -187,7 +187,7 @@ export const Login = () => {
           </div>
 
           {/* Demo Callout Box */}
-          <div
+          {/* <div
             onClick={autofillAdmin}
             className="group cursor-pointer rounded-xl border border-sand-200 bg-white p-3.5 text-left transition-all hover:border-moss-300 hover:bg-moss-50"
           >
@@ -201,7 +201,7 @@ export const Login = () => {
               Email: admin@rbac.com <br />
               Password: admin123
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

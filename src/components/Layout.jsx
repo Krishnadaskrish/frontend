@@ -91,9 +91,9 @@ export const Layout = ({ children, pageTitle, pageSubtitle, headerAction }) => {
       {/* Navigation */}
       <div className="flex-1 space-y-6 overflow-y-auto px-4">
         <div>
-          <p className="mb-2 px-3.5 text-[10px] font-extrabold uppercase tracking-widest text-white">
+          {/* <p className="mb-2 px-3.5 text-[10px] font-extrabold uppercase tracking-widest text-white">
             Navigation
-          </p>
+          </p> */}
           <div className="space-y-1">
             <NavItem
               icon={LayoutGrid}
@@ -124,10 +124,10 @@ export const Layout = ({ children, pageTitle, pageSubtitle, headerAction }) => {
           <p className="mb-2 px-3.5 text-[10px] font-extrabold uppercase tracking-widest text-forest-500">
             Workspace
           </p>
-          <div className="space-y-1">
+          {/* <div className="space-y-1">
             <NavItem icon={Settings} label="Settings" disabled badge="Soon" />
             <NavItem icon={LifeBuoy} label="Support" disabled badge="Soon" />
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -140,7 +140,7 @@ export const Layout = ({ children, pageTitle, pageSubtitle, headerAction }) => {
           <p className="truncate text-xs font-bold text-white">
             {user.first_name} {user.last_name || ""}
           </p>
-          <p className="truncate text-[10px] text-forest-500">{user.role}</p>
+          <p className="truncate text-[10px] text-white">{user.role}</p>
         </div>
         <button
           onClick={logout}

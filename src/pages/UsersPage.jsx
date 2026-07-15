@@ -311,7 +311,7 @@ export const UsersPage = () => {
                     required
                     value={newUser.first_name}
                     onChange={(e) => setNewUser({ ...newUser, first_name: e.target.value })}
-                    placeholder="Jane"
+                    placeholder="Enter user first name  "
                     className="h-10 w-full rounded-lg border border-sand-200 bg-sand-50 px-3 text-xs text-forest-900 outline-none transition-colors focus:border-moss-400"
                   />
                 </div>
@@ -321,7 +321,7 @@ export const UsersPage = () => {
                     type="text"
                     value={newUser.last_name}
                     onChange={(e) => setNewUser({ ...newUser, last_name: e.target.value })}
-                    placeholder="Doe"
+                    placeholder="Enter user last name "
                     className="h-10 w-full rounded-lg border border-sand-200 bg-sand-50 px-3 text-xs text-forest-900 outline-none transition-colors focus:border-moss-400"
                   />
                 </div>
@@ -334,7 +334,7 @@ export const UsersPage = () => {
                   required
                   value={newUser.email}
                   onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-                  placeholder="jane.doe@company.com"
+                  placeholder="Enter user email"
                   className="h-10 w-full rounded-lg border border-sand-200 bg-sand-50 px-3 text-xs text-forest-900 outline-none transition-colors focus:border-moss-400"
                 />
               </div>
@@ -346,7 +346,7 @@ export const UsersPage = () => {
                   required
                   value={newUser.password}
                   onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
-                  placeholder="••••••••"
+                  placeholder="Enter user password "
                   className="h-10 w-full rounded-lg border border-sand-200 bg-sand-50 px-3 text-xs text-forest-900 outline-none transition-colors focus:border-moss-400"
                 />
               </div>
