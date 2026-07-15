@@ -41,10 +41,7 @@ export const Login = () => {
     }
   };
 
-  const autofillAdmin = () => {
-    setEmail("admin@rbac.com");
-    setPassword("admin123");
-  };
+
 
   return (
     <div className="flex min-h-screen bg-sand-50">
@@ -186,22 +183,7 @@ export const Login = () => {
             </span>
           </div>
 
-          {/* Demo Callout Box */}
-          {/* <div
-            onClick={autofillAdmin}
-            className="group cursor-pointer rounded-xl border border-sand-200 bg-white p-3.5 text-left transition-all hover:border-moss-300 hover:bg-moss-50"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[11px] font-bold text-moss-600">Click to autofill Admin:</span>
-              <span className="rounded-md bg-sand-100 px-1.5 py-0.5 text-[9px] font-bold text-forest-600 transition-all group-hover:bg-moss-500 group-hover:text-white">
-                Autofill
-              </span>
-            </div>
-            <p className="mt-1 font-mono text-xs text-forest-500">
-              Email: admin@rbac.com <br />
-              Password: admin123
-            </p>
-          </div> */}
+    
         </div>
       </div>
     </div>
