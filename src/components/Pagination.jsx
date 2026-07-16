@@ -11,7 +11,6 @@ export default function Pagination({
 }) {
   const totalPages = Math.max(1, Math.ceil(totalRecords / limit));
 
-  // Generate range of page numbers to display
   const getPageNumbers = () => {
     const pages = [];
     const maxVisiblePages = 5;
@@ -21,7 +20,6 @@ export default function Pagination({
         pages.push(i);
       }
     } else {
-      // Always include page 1
       pages.push(1);
 
       const start = Math.max(2, page - 1);
@@ -39,7 +37,6 @@ export default function Pagination({
         pages.push("ellipsis-end");
       }
 
-      // Always include last page
       pages.push(totalPages);
     }
     return pages;
@@ -50,7 +47,6 @@ export default function Pagination({
 
   return (
     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 bg-white border-t border-sand-200 rounded-b-xl">
-      {/* Entries Info */}
       <div className="text-sm font-semibold text-forest-500">
         {totalRecords > 0 ? (
           <>
